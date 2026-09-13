@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://cstl0godotscene"]
+
+[ext_resource type="PackedScene" uid="uid://ds3ghqfy6ffyh" path="res://assets/models/castle_ref_model.glb" id="1_castle_model"]
+[ext_resource type="Script" path="res://scripts/castle_showcase.gd" id="2_showcase_script"]
+[ext_resource type="Environment" path="res://materials/env_day.tres" id="3_day_environment"]
+[ext_resource type="Material" path="res://materials/ground_grass.tres" id="4_ground_material"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ground"]
+size = Vector2(600, 600)
+
+[node name="CastleShowcase" type="Node3D"]
+script = ExtResource("2_showcase_script")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_day_environment")
+
+[node name="SunLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.766044, 0, 0.642788, 0.506524, 0.615661, -0.603651, -0.39574, 0.788011, 0.471624, 0, 120, 0)
+light_color = Color(1, 0.9569, 0.8784, 1)
+light_energy = 1.35
+light_specular = 0.6
+shadow_enabled = true
+shadow_bias = 0.03
+shadow_normal_bias = 1.5
+directional_shadow_mode = 2
+directional_shadow_max_distance = 320.0
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.02, 0)
+mesh = SubResource("PlaneMesh_ground")
+material_override = ExtResource("4_ground_material")
+
+[node name="Castle" parent="." instance=ExtResource("1_castle_model")]
+
+[node name="MainCamera" type="Camera3D" parent="."]
+transform = Transform3D(0.819207, 0, -0.573498, -0.122819, 0.976799, -0.17544, 0.560193, 0.214158, 0.8002, 149.1, 95, 212.98)
+fov = 45.0
+near = 0.1
+far = 3000.0
+current = true

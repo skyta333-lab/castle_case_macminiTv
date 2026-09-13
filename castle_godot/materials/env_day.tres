@@ -1,0 +1,45 @@
+[gd_resource type="Environment" load_steps=3 format=3]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_day"]
+resource_name = "DaySkyMaterial"
+sky_top_color = Color(0.255, 0.49, 0.804, 1)
+sky_horizon_color = Color(0.749, 0.847, 0.941, 1)
+sky_curve = 0.13
+sky_energy_multiplier = 1.0
+ground_bottom_color = Color(0.196, 0.267, 0.184, 1)
+ground_horizon_color = Color(0.6, 0.678, 0.62, 1)
+sun_angle_max = 30.0
+sun_curve = 0.15
+
+[sub_resource type="Sky" id="Sky_day"]
+resource_name = "DaySky"
+sky_material = SubResource("ProceduralSkyMaterial_day")
+process_mode = 2
+radiance_size = 4
+
+[resource]
+resource_name = "CastleDayEnvironment"
+background_mode = 2
+sky = SubResource("Sky_day")
+sky_custom_fov = 0.0
+ambient_light_source = 3
+ambient_light_color = Color(0.749, 0.847, 0.941, 1)
+ambient_light_sky_contribution = 1.0
+ambient_light_energy = 1.0
+tonemap_mode = 2
+tonemap_exposure = 1.0
+tonemap_white = 6.0
+ssao_enabled = true
+ssao_radius = 2.0
+ssao_intensity = 1.6
+ssil_enabled = false
+sdfgi_enabled = false
+glow_enabled = true
+glow_intensity = 0.5
+glow_bloom = 0.05
+fog_enabled = true
+fog_light_color = Color(0.784, 0.859, 0.922, 1)
+fog_light_energy = 1.0
+fog_density = 0.0008
+fog_aerial_perspective = 0.0
+adjustment_enabled = false
