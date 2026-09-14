@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="EnvironmentPreset" format=3]
+
+[ext_resource type="Script" path="res://scripts/environment_preset.gd" id="1_51gis"]
+
+[resource]
+script = ExtResource("1_51gis")
+preset_name = "SUNSET"
+sky_top_color = Color(0.176, 0.235, 0.478, 1)
+sky_horizon_color = Color(0.965, 0.549, 0.286, 1)
+ground_bottom_color = Color(0.106, 0.09, 0.118, 1)
+ground_horizon_color = Color(0.451, 0.286, 0.243, 1)
+sun_angle_max = 18.0
+sun_color = Color(1, 0.588, 0.302, 1)
+sun_energy = 1.05
+sun_pitch_deg = 9.0
+sun_yaw_deg = 70.0
+ambient_color = Color(0.855, 0.553, 0.42, 1)
+ambient_energy = 0.55
+fog_color = Color(0.925, 0.62, 0.451, 1)
+fog_density = 0.0016
+fog_light_energy = 1.25
+fog_sky_affect = 0.85
+glow_intensity = 0.9
+glow_bloom = 0.15
+ssao_intensity = 1.2
+window_emission_energy = 1.2
+window_emission_color = Color(1, 0.741, 0.376, 1)

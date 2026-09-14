@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cstl0godotscene"]
+[gd_scene load_steps=11 format=3 uid="uid://cstl0godotscene"]
 
 [ext_resource type="PackedScene" uid="uid://ds3ghqfy6ffyh" path="res://assets/models/castle_ref_model.glb" id="1_castle_model"]
 [ext_resource type="Script" path="res://scripts/castle_showcase.gd" id="2_showcase_script"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="6_hud_scene"]
 [ext_resource type="Script" path="res://scripts/camera_mode_manager.gd" id="7_camera_mode_manager"]
 [ext_resource type="Script" path="res://scripts/castle_collision.gd" id="8_castle_collision"]
+[ext_resource type="Script" path="res://scripts/environment_manager.gd" id="9_environment_manager"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ground"]
 size = Vector2(600, 600)
@@ -56,4 +57,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 78)
 script = ExtResource("7_camera_mode_manager")
 
 [node name="HUD" parent="." instance=ExtResource("6_hud_scene")]
+
+[node name="EnvironmentManager" type="Node" parent="."]
+script = ExtResource("9_environment_manager")
 
