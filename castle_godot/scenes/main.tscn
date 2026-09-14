@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://cstl0godotscene"]
+[gd_scene load_steps=10 format=3 uid="uid://cstl0godotscene"]
 
 [ext_resource type="PackedScene" uid="uid://ds3ghqfy6ffyh" path="res://assets/models/castle_ref_model.glb" id="1_castle_model"]
 [ext_resource type="Script" path="res://scripts/castle_showcase.gd" id="2_showcase_script"]
 [ext_resource type="Environment" path="res://materials/env_day.tres" id="3_day_environment"]
 [ext_resource type="Material" path="res://materials/ground_grass.tres" id="4_ground_material"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="5_player_scene"]
+[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="6_hud_scene"]
+[ext_resource type="Script" path="res://scripts/camera_mode_manager.gd" id="7_camera_mode_manager"]
+[ext_resource type="Script" path="res://scripts/castle_collision.gd" id="8_castle_collision"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ground"]
 size = Vector2(600, 600)
@@ -38,3 +42,18 @@ fov = 45.0
 near = 0.1
 far = 3000.0
 current = true
+
+[node name="WorldCollision" type="Node3D" parent="."]
+script = ExtResource("8_castle_collision")
+
+[node name="PlayerSpawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 78)
+
+[node name="Player" parent="." instance=ExtResource("5_player_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 78)
+
+[node name="CameraModeManager" type="Node" parent="."]
+script = ExtResource("7_camera_mode_manager")
+
+[node name="HUD" parent="." instance=ExtResource("6_hud_scene")]
+
