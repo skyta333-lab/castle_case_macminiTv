@@ -79,6 +79,8 @@ var _volley_total: int = 0
 var _night_factor: float = 0.0
 var _visibility_scale: float = 1.0
 var _quality_scale: float = 1.0
+## 粒子绘制距离（0 = 不限制），由 quality_manager 注入
+var _particle_draw_distance: float = 0.0
 var _applied_amount: int = 0
 
 
@@ -174,6 +176,25 @@ func set_quality_scale(scale_value: float, use_trails: bool = true) -> void:
 	for sys in _systems:
 		sys.trail_enabled = use_trails
 	_apply_night_scale()
+
+
+## 粒子绘制距离（TASK05 可见性优化）：超过该距离的发射位整体剔除，0 = 不限制。
+## 只写 GeometryInstance3D.visibility_range_end，不增删任何节点。
+func set_particle_draw_distance(distance: float) -> void:
+	_particle_draw_distance = maxf(distance, 0.0)
+	for sys in _systems:
+		sys.visibility_range_end = _particle_draw_distance
+		sys.visibility_range_end_margin = 0.0 if _particle_draw_distance <= 0.0 else 25.0
+		sys.visibility_range_fade_mode = GeometryInstance3D.VISIBILITY_RANGE_FADE_SELF
+
+
+func get_particle_draw_distance() -> float:
+	return _particle_draw_distance
+
+
+## 粒子系统列表（性能脚本 / 验证脚本用）
+func get_systems() -> Array[GPUParticles3D]:
+	return _systems
 
 
 func get_pad_count() -> int:

@@ -29,6 +29,11 @@ class_name NightLighting
 ## 调试用：忽略昼夜系统，强制常亮
 @export var force_on: bool = false
 
+@export_group("Quality (由 quality_manager 注入)")
+## 允许点亮的灯光数量上限，-1 = 全部点亮。
+## 灯光节点本身始终只有 light_specs 那么多个，低画质档只是"少点亮几盏"，不会新建/销毁节点。
+@export var light_budget: int = -1
+
 ## 默认灯光规格（世界坐标）
 const DEFAULT_SPECS: Array = [
 	{
@@ -106,6 +111,26 @@ func get_light_count() -> int:
 	return _lights.size()
 
 
+## 画质档：点亮前 n 盏灯（-1 = 全部）。只改点亮数量，不增删灯光节点。
+func set_light_budget(count: int) -> void:
+	light_budget = count
+	_apply(_read_night_factor())
+
+
+## 当前允许点亮的数量（-1 = 全部）
+func get_light_budget() -> int:
+	return light_budget
+
+
+## 实际处于点亮状态的灯数（受画质档限制）
+func get_lit_light_count() -> int:
+	var n: int = 0
+	for light in _lights:
+		if light.visible and light.light_energy > 0.001:
+			n += 1
+	return n
+
+
 ## 灯光节点列表
 func get_lights() -> Array[OmniLight3D]:
 	return _lights
@@ -155,7 +180,9 @@ func _apply(factor: float) -> void:
 	var curve: float = pow(clampf(factor, 0.0, 1.0), response_exponent)
 	_scale = lerpf(day_scale, 1.0, curve)
 	var visible_now: bool = _scale > visible_threshold
+	var budget: int = _lights.size() if light_budget < 0 else mini(light_budget, _lights.size())
 	for i in _lights.size():
 		var light := _lights[i]
-		light.visible = visible_now
-		light.light_energy = _base_energy[i] * _scale
+		var lit: bool = visible_now and i < budget
+		light.visible = lit
+		light.light_energy = _base_energy[i] * _scale if lit else 0.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cstl0godotscene"]
+[gd_scene load_steps=18 format=3 uid="uid://cstl0godotscene"]
 
 [ext_resource type="PackedScene" uid="uid://ds3ghqfy6ffyh" path="res://assets/models/castle_ref_model.glb" id="1_castle_model"]
 [ext_resource type="Script" path="res://scripts/castle_showcase.gd" id="2_showcase_script"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" path="res://scenes/fireworks.tscn" id="12_fireworks_scene"]
 [ext_resource type="Script" path="res://scripts/night_lighting.gd" id="13_night_lighting"]
 [ext_resource type="Script" path="res://scripts/presentation_controller.gd" id="14_presentation_controller"]
+[ext_resource type="Script" path="res://scripts/quality_manager.gd" id="15_quality_manager"]
+[ext_resource type="Script" path="res://scripts/performance_hud.gd" id="16_performance_hud"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ground"]
 size = Vector2(600, 600)
@@ -78,4 +80,10 @@ script = ExtResource("13_night_lighting")
 
 [node name="PresentationController" type="Node" parent="."]
 script = ExtResource("14_presentation_controller")
+
+[node name="QualityManager" type="Node" parent="."]
+script = ExtResource("15_quality_manager")
+
+[node name="PerformanceHud" type="Node" parent="."]
+script = ExtResource("16_performance_hud")
 
