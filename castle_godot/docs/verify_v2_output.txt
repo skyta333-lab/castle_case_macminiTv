@@ -1,0 +1,200 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+=== TASK06 V2 交付总自检（headless） ===
+
+[A] 主场景与必需节点
+  [PASS] 主场景文件存在且可加载  -> res://scenes/main.tscn
+[castle_collision] static bodies = 23
+[environment] ready | preset=DAY time=12.00 auto=false sun=true windows=2 day_length=180s
+[environment] presets = ["res://materials/env_day_preset.tres", "res://materials/env_sunset.tres", "res://materials/env_night.tres"]（来源：检查器 > materials/*.tres > 脚本内置默认值）
+[quality] ready | default=MEDIUM props=201（可见剔除阈值 4.0m）
+[quality] level = MEDIUM | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 320.0, "shadow_blur": 1.0, "light_angular_distance": 0.0, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.0, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 950.0, "prop_visibility_end": 140.0, "particle_draw_distance": 0.0 }
+[perf_hud] ready | 初始状态=OFF | 刷新间隔=0.25s
+[castle_godot] scene ready | castle loaded: true
+[castle_godot] castle world AABB size = (230.0, 88.29, 230.0) , center = (0.0, 43.145, 0.0)
+  [PASS] 主场景可实例化并进入场景树
+  [PASS] 必需节点存在：Castle
+  [PASS] 必需节点存在：Player
+  [PASS] 必需节点存在：MainCamera
+  [PASS] 必需节点存在：EnvironmentManager
+  [PASS] 必需节点存在：InteractionController
+  [PASS] 必需节点存在：Fireworks
+  [PASS] 必需节点存在：PerformanceHud
+  [PASS] 必需节点存在：HUD
+  [PASS] 必需节点存在：PoiSet
+  [PASS] 必需节点存在：QualityManager
+  [PASS] 必需节点存在：NightLights
+  [PASS] 必需节点存在：PresentationController
+  [PASS] 必需节点存在：WorldCollision
+  [PASS] 必需节点存在：CameraModeManager
+  [PASS] Engine 版本 = 4.x  -> 4.7.2-stable (official)
+  [PASS] 项目主场景设置指向 main.tscn  -> res://scenes/main.tscn
+
+[B] 模型与场景规模
+  [PASS] 城堡 GLB 已加载且网格数 > 0  -> 655 个网格
+  [PASS] 城堡整体包围盒尺寸合理（X / Z 均 > 200m）  -> size=(230.0, 88.29, 230.0)
+  [PASS] 地面 Ground 存在（兜底承载面）
+  [PASS] 程序化碰撞体已生成（> 0 个静态体）  -> 23 个碰撞节点
+  [PASS] 小装饰物可见性剔除清单非空  -> 201 个
+
+[C] 玩家移动与碰撞
+  [PASS] 玩家控制器方法完整
+  [PASS] 输入映射 WASD 齐全
+  [PASS] 输入映射 sprint = Shift / jump = Space
+  [PASS] 出生点 PlayerSpawn 已配置
+  [PASS] 切到第一人称后玩家恢复物理处理
+  [PASS] 玩家落到前庭平台且静止  -> y=4.45 on_floor=true
+  [PASS] W 前进有效（热点体积不阻挡移动）  -> 前进 17.16 m
+  [PASS] 跳跃生效（离地高度 > 0.15m）  -> 峰值 +4.010 m
+  [PASS] teleport_to 定位准确  -> 0.005 m 偏差
+
+[D] 镜头切换
+  [PASS] 输入映射 mode_showcase = 1
+  [PASS] 输入映射 mode_first_person = 2
+  [PASS] 输入映射 mode_third_person = 3
+  [PASS] 输入映射 toggle_mouse = Escape（释放/捕获鼠标）
+  [PASS] 按 2 → 第一人称模式  -> mode=2
+  [PASS] 第一人称下玩家被激活
+  [PASS] 第一人称使用玩家相机（非展示相机）  -> Camera3D
+  [PASS] 按 3 → 第三人称模式  -> mode=3
+  [PASS] 第三人称相机与第一人称不同（弹簧臂相机）  -> Camera3D
+  [PASS] 按 1 → 展示环绕模式  -> mode=1
+  [PASS] 展示模式相机成为 current
+  [PASS] 展示模式玩家不再跟随（释放控制）
+  [PASS] 展示模式恢复自动环绕（orbit speed = 6°/s）  -> 6.0°/s
+
+[E] 昼夜环境
+  [PASS] 输入映射 env_day = F1
+  [PASS] 输入映射 env_sunset = F2
+  [PASS] 输入映射 env_night = F3
+  [PASS] 输入映射 env_auto_cycle = F4
+  [PASS] 三套环境预设资源文件均已导出
+  [PASS] F1 → DAY 预设  -> DAY
+  [PASS] DAY 夜间因子 ≈ 0  -> night_factor=0.000
+  [PASS] DAY 天空为 ProceduralSky 且带雾
+  [PASS] DAY 太阳明亮（energy > 0.8）  -> energy=1.35
+  [PASS] F3 → NIGHT 预设  -> NIGHT
+  [PASS] NIGHT 夜间因子 ≈ 1  -> night_factor=1.000
+  [PASS] 夜间太阳（月光）显著变暗  -> day=1.35 -> night=0.17
+  [PASS] 夜间天空整体压暗  -> color=(0.55, 0.686, 1.0, 1.0)
+  [PASS] F2 → SUNSET 预设  -> SUNSET
+  [PASS] SUNSET 太阳偏暖（R > B，金色黄昏）  -> color=(1.0, 0.588, 0.302, 1.0)
+  [PASS] SUNSET 雾更浓（密度 > 白天）  -> 0.0016 vs 0.0008
+  [PASS] 黄昏档窗光未点亮（night_factor = 0）
+  [PASS] F4 → 自动昼夜开启
+  [PASS] 自动昼夜时间推进  -> 12.00h -> 12.20h
+  [PASS] 再按 F4 → 自动昼夜关闭
+  [PASS] 夜景靠窗户自发光实现，城堡内无新增实时灯（≤ 2 盏）  -> 0 盏
+  [PASS] 夜景灯光组已装配  -> 6 个子节点
+
+[F] 交互热点
+  [PASS] 输入映射 interact = E
+  [PASS] 输入映射 toggle_poi_markers = F8
+  [PASS] InteractRay 已启用且掩码含交互层  -> mask=5
+  [PASS] 交互热点数量 ≥ 5  -> 6 个
+  [PASS] 每个热点都有标题与说明
+  [PASS] 热点标题互不相同  -> 6 个不同标题
+  [PASS] 准星命中「正门」  -> 实际命中 POI_Gate
+  [PASS] 准星命中「中央主塔」  -> 实际命中 POI_CentralTower
+  [PASS] 准星命中「西塔」  -> 实际命中 POI_WestTower
+  [PASS] 准星命中「东塔」  -> 实际命中 POI_EastTower
+  [PASS] 四个主要热点全部可被准星命中  -> 4/4
+  [PASS] 射线锁定 PoiInteractable
+  [PASS] HUD 提示含 E 与热点标题  -> "Press E to interact  ·  Central Tower"
+  [PASS] E 展开说明面板
+  [PASS] 面板正文含说明与关闭提示
+  [PASS] 再按 E 关闭面板
+  [PASS] F8 打开：全部热点标记可见
+  [PASS] F8 关闭：全部热点标记隐藏
+  [PASS] GateController 存在（正门可交互）
+  [PASS] GLB 中门叶可独立控制  -> Gate_Door_W / Gate_Door_E
+  [PASS] 门叶开启动画完成  -> progress=1.000000
+  [PASS] 门叶绕铰链旋转约 95°  -> 实测 95.0°
+  [PASS] 门叶关闭并回到初始 transform  -> progress=0.000000
+
+[G] 烟花与演示模式
+  [PASS] 输入映射 fireworks_toggle = F5
+  [PASS] 输入映射 presentation_mode = F6
+  [PASS] 烟花发射位 = 4  -> 4
+  [PASS] 烟花粒子系统已构建  -> 4 个系统
+  [PASS] F5 → 烟花开启
+  [PASS] fire_volley 生成待发射队列  -> pending=1
+  [PASS] 烟花真实发射（fired_total 增长）  -> 0 -> 2
+  [PASS] 烟花对应粒子上限与画质档一致（4 × 220 = 880）  -> 880
+  [PASS] 再按 F5 → 烟花关闭
+  [PASS] F6 → 进入演示模式
+  [PASS] 演示模式自动切到 NIGHT  -> NIGHT
+  [PASS] 演示模式自动打开烟花
+  [PASS] 演示模式切到展示相机  -> mode=1
+  [PASS] 演示模式环绕速度 = 3°/s（缓慢）  -> 3.0°/s
+  [PASS] 环绕速度已真正下发到展示场景（3°/s）  -> 3.0°/s
+  [PASS] 再按 F6 → 退出演示模式
+  [PASS] 退出后还原进入前的环境预设（DAY）  -> DAY
+  [PASS] 退出后烟花关闭
+  [PASS] 退出后自动昼夜状态还原（关闭）
+  [PASS] 退出后环绕速度与恢复的镜头模式一致（展示=6°/s，玩家=0°/s）  -> mode=2 speed=0.0°/s
+
+[H] 性能 HUD 与三档画质
+  [PASS] 输入映射 toggle_perf_hud = F7
+  [PASS] 输入映射 quality_low / medium / high = 7 / 8 / 9
+  [PASS] 默认画质档 = MEDIUM（Mac mini 默认）  -> MEDIUM
+  [PASS] 性能 HUD 默认关闭
+[perf_hud] ON
+  [PASS] F7 → 性能 HUD 打开
+  [PASS] 读数含 FPS / 帧时间  -> FPS 145  |  Frame 6.90 ms | Draw Calls 0  |  Objects 3761  |  Nodes 783 | Quality: MEDIUM  |  1600x900 (scale 1.00) | Player: (0.0, 0.0, 78.0)
+  [PASS] 读数含 Draw Calls / Objects / Nodes
+  [PASS] 读数含画质档 / 分辨率 / 玩家坐标
+  [PASS] HUD Label 与性能 HUD 同步
+  [PASS] 指标采集有效（对象数 / 节点数 > 0）  -> objects=3761 nodes=783
+[quality] level = LOW | { "msaa": 0, "screen_space_aa": 1, "render_scale": 0.75, "shadow_enabled": true, "shadow_max_distance": 150.0, "shadow_blur": 0.3, "light_angular_distance": 0.0, "glow_enabled": false, "fog_enabled": false, "ssao_enabled": false, "window_emission_scale": 0.6, "particle_scale": 0.25, "particle_trails": false, "night_light_budget": 3, "camera_far": 700.0, "prop_visibility_end": 70.0, "particle_draw_distance": 300.0 }
+  [PASS] 按 7 → LOW  -> LOW
+  [PASS] LOW：渲染比例 0.75 且关闭 Glow / SSAO
+  [PASS] LOW：摄像机 far 700（省算力）  -> 700.0
+  [PASS] LOW：小装饰物可见距离 70m（可见性剔除生效）  -> 70.0
+  [PASS] LOW：烟花粒子量下降（≤ MEDIUM 的 30%）  -> LOW=220
+[quality] level = HIGH | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 520.0, "shadow_blur": 1.6, "light_angular_distance": 1.2, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.15, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 1500.0, "prop_visibility_end": 0.0, "particle_draw_distance": 0.0 }
+  [PASS] 按 9 → HIGH  -> HIGH
+  [PASS] HIGH：摄像机 far 1500 且不做可见性剔除
+  [PASS] HIGH：阴影距离 520 > MEDIUM 的 320  -> 520 vs 320
+[quality] level = MEDIUM | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 320.0, "shadow_blur": 1.0, "light_angular_distance": 0.0, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.0, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 950.0, "prop_visibility_end": 140.0, "particle_draw_distance": 0.0 }
+  [PASS] 按 8 → MEDIUM  -> MEDIUM
+  [PASS] 切回 MEDIUM 与初始 MEDIUM 完全一致（无残留）
+  [PASS] 切档后性能 HUD 画质行实时刷新  -> FPS 144  |  Frame 6.94 ms | Draw Calls 0  |  Objects 3761  |  Nodes 783 | Quality: MEDIUM  |  1600x900 (scale 1.00) | Player: (0.0, 0.0, 78.0)
+[perf_hud] OFF
+  [PASS] 再按 F7 → 性能 HUD 关闭
+
+[I] V2 交付物
+  [PASS] README.md 存在且非空  -> 7556 字符
+  [PASS] README 含小节「## 项目简介」
+  [PASS] README 含小节「### 启动方式」
+  [PASS] README 含小节「### 操作键」
+  [PASS] README 含小节「### 模式切换」
+  [PASS] README 含小节「### 昼夜」
+  [PASS] README 含小节「### 交互」
+  [PASS] README 含小节「### 烟花」
+  [PASS] README 含小节「### 性能档」
+  [PASS] README 含小节「### 目录结构」
+  [PASS] README 含小节「### 已知限制」
+  [PASS] docs/CHANGELOG_V2.md 存在且非空  -> 4872 字符
+  [PASS] CHANGELOG 覆盖 TASK 01
+  [PASS] CHANGELOG 覆盖 TASK 02
+  [PASS] CHANGELOG 覆盖 TASK 03
+  [PASS] CHANGELOG 覆盖 TASK 04
+  [PASS] CHANGELOG 覆盖 TASK 05
+  [PASS] docs/PERFORMANCE_REPORT.md 存在且非空
+  [PASS] docs/benchmark_results.json 可解析
+  [PASS] benchmark 含 12 组场景结果  -> 12 组
+  [PASS] benchmark 记录了 Godot 版本与机器信息
+  [PASS] docs/screenshots/ 目录存在
+  [PASS] 截图存在且非空：01_day_exploration.png  -> 385455 字节
+  [PASS] 截图存在且非空：02_night_castle.png  -> 403005 字节
+  [PASS] 截图存在且非空：03_fireworks.png  -> 487741 字节
+  [PASS] 截图存在且非空：04_performance_hud.png  -> 412144 字节
+  [PASS] 阶段报告存在：TASK01_DONE.md
+  [PASS] 阶段报告存在：TASK02_DONE.md
+  [PASS] 阶段报告存在：TASK03_DONE.md
+  [PASS] 阶段报告存在：TASK04_DONE.md
+  [PASS] 阶段报告存在：TASK05_DONE.md
+
+=== 结果：163 项通过 / 0 项失败 ===
+=== RESULT === TASK06_VERIFY_PASS
