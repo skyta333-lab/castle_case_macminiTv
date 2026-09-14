@@ -54,6 +54,22 @@ theme_override_font_sizes/font_size = 16
 text = "Quality: MEDIUM"
 horizontal_alignment = 2
 
+[node name="FxLabel" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -440.0
+offset_top = 192.0
+offset_right = -16.0
+offset_bottom = 232.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.86, 0.93, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.85)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 16
+text = "FX: Fireworks OFF | Presentation OFF"
+horizontal_alignment = 2
+
 [node name="CrosshairLabel" type="Label" parent="."]
 anchors_preset = 8
 anchor_left = 0.5

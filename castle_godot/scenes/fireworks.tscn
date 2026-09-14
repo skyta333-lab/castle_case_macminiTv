@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/fireworks_controller.gd" id="1_fireworks"]
+
+[node name="Fireworks" type="Node3D"]
+script = ExtResource("1_fireworks")
+
+[node name="Pad1" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70, 110, 60)
+
+[node name="Pad2" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 120, 30)
+
+[node name="Pad3" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 135, 90)
+
+[node name="Pad4" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 125, -80)

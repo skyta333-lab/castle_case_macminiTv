@@ -12,6 +12,7 @@ class_name GameHud
 @onready var controls_label: Label = $ControlsLabel
 @onready var status_label: Label = $StatusLabel
 @onready var quality_label: Label = $QualityLabel
+@onready var fx_label: Label = $FxLabel
 @onready var crosshair_label: Label = $CrosshairLabel
 @onready var prompt_label: Label = $PromptLabel
 @onready var poi_title_label: Label = $PoiTitleLabel
@@ -20,6 +21,8 @@ class_name GameHud
 
 var _mode_text: String = ""
 var _env_text: String = ""
+var _fx_fireworks: bool = false
+var _fx_presentation: bool = false
 
 
 func _ready() -> void:
@@ -28,6 +31,7 @@ func _ready() -> void:
 	_env_text = "Time 12:00 | DAY | Auto OFF"
 	_refresh_status()
 	set_quality_status("MEDIUM")
+	_refresh_fx()
 	set_crosshair_visible(false)
 	set_prompt("")
 	hide_poi()
@@ -50,6 +54,42 @@ func set_environment_status(text: String) -> void:
 func set_quality_status(text: String) -> void:
 	if quality_label != null:
 		quality_label.text = "Quality: %s" % text
+
+
+## 烟花开关状态（F5）
+func set_fireworks_status(on: bool) -> void:
+	_fx_fireworks = on
+	_refresh_fx()
+
+
+## 演示模式状态（F6）
+func set_presentation_status(on: bool) -> void:
+	_fx_presentation = on
+	_refresh_fx()
+
+
+func get_fx_status() -> String:
+	return _fx_text()
+
+
+func is_fireworks_on() -> bool:
+	return _fx_fireworks
+
+
+func is_presentation_on() -> bool:
+	return _fx_presentation
+
+
+func _fx_text() -> String:
+	return "FX: Fireworks %s | Presentation %s" % [
+		"ON" if _fx_fireworks else "OFF",
+		"ON" if _fx_presentation else "OFF",
+	]
+
+
+func _refresh_fx() -> void:
+	if fx_label != null:
+		fx_label.text = _fx_text()
 
 
 func set_crosshair_visible(visible_now: bool) -> void:
