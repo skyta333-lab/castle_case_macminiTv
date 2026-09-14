@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3]
+
+[sub_resource type="SphereMesh" id="SphereMesh_marker"]
+radius = 0.45
+height = 0.9
+radial_segments = 16
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_marker"]
+shading_mode = 0
+albedo_color = Color(1, 0.83, 0.32, 1)
+emission_enabled = true
+emission = Color(1, 0.74, 0.2, 1)
+emission_energy_multiplier = 3.0
+
+[node name="PoiMarker" type="Node3D"]
+
+[node name="Orb" type="MeshInstance3D" parent="."]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_marker")
+surface_material_override/0 = SubResource("StandardMaterial3D_marker")
+
+[node name="Label" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, 0)
+pixel_size = 0.005
+billboard = 1
+fixed_size = true
+no_depth_test = true
+font_size = 48
+outline_size = 16
+outline_modulate = Color(0, 0, 0, 1)
+text = "POI"
