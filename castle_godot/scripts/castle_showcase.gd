@@ -63,6 +63,18 @@ func _process(delta: float) -> void:
 		_sun.rotate_y(deg_to_rad(sun_orbit_speed * delta))
 
 
+## 直接设置当前环绕方位角（度）并立即生效。
+## 供基准脚本 / 演示模式用于把不同场景的环绕相位错开，避免画面重复。
+func set_orbit_angle(deg: float) -> void:
+	_orbit_angle = fmod(deg, 360.0)
+	_apply_camera()
+
+
+## 当前环绕方位角（度）
+func get_orbit_angle() -> float:
+	return _orbit_angle
+
+
 func _apply_camera() -> void:
 	if _camera == null:
 		return

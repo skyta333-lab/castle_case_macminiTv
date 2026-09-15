@@ -1,9 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://cstl0godotscene"]
+[gd_scene load_steps=18 format=3 uid="uid://cstl0godotscene"]
 
 [ext_resource type="PackedScene" uid="uid://ds3ghqfy6ffyh" path="res://assets/models/castle_ref_model.glb" id="1_castle_model"]
 [ext_resource type="Script" path="res://scripts/castle_showcase.gd" id="2_showcase_script"]
 [ext_resource type="Environment" path="res://materials/env_day.tres" id="3_day_environment"]
 [ext_resource type="Material" path="res://materials/ground_grass.tres" id="4_ground_material"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="5_player_scene"]
+[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="6_hud_scene"]
+[ext_resource type="Script" path="res://scripts/camera_mode_manager.gd" id="7_camera_mode_manager"]
+[ext_resource type="Script" path="res://scripts/castle_collision.gd" id="8_castle_collision"]
+[ext_resource type="Script" path="res://scripts/environment_manager.gd" id="9_environment_manager"]
+[ext_resource type="PackedScene" path="res://scenes/pois.tscn" id="10_poi_set"]
+[ext_resource type="Script" path="res://scripts/interaction_controller.gd" id="11_interaction_controller"]
+[ext_resource type="PackedScene" path="res://scenes/fireworks.tscn" id="12_fireworks_scene"]
+[ext_resource type="Script" path="res://scripts/night_lighting.gd" id="13_night_lighting"]
+[ext_resource type="Script" path="res://scripts/presentation_controller.gd" id="14_presentation_controller"]
+[ext_resource type="Script" path="res://scripts/quality_manager.gd" id="15_quality_manager"]
+[ext_resource type="Script" path="res://scripts/performance_hud.gd" id="16_performance_hud"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ground"]
 size = Vector2(600, 600)
@@ -38,3 +50,40 @@ fov = 45.0
 near = 0.1
 far = 3000.0
 current = true
+
+[node name="WorldCollision" type="Node3D" parent="."]
+script = ExtResource("8_castle_collision")
+
+[node name="PlayerSpawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 78)
+
+[node name="Player" parent="." instance=ExtResource("5_player_scene")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 78)
+
+[node name="CameraModeManager" type="Node" parent="."]
+script = ExtResource("7_camera_mode_manager")
+
+[node name="HUD" parent="." instance=ExtResource("6_hud_scene")]
+
+[node name="EnvironmentManager" type="Node" parent="."]
+script = ExtResource("9_environment_manager")
+
+[node name="PoiSet" parent="." instance=ExtResource("10_poi_set")]
+
+[node name="InteractionController" type="Node" parent="."]
+script = ExtResource("11_interaction_controller")
+
+[node name="NightLights" type="Node3D" parent="."]
+script = ExtResource("13_night_lighting")
+
+[node name="Fireworks" parent="." instance=ExtResource("12_fireworks_scene")]
+
+[node name="PresentationController" type="Node" parent="."]
+script = ExtResource("14_presentation_controller")
+
+[node name="QualityManager" type="Node" parent="."]
+script = ExtResource("15_quality_manager")
+
+[node name="PerformanceHud" type="Node" parent="."]
+script = ExtResource("16_performance_hud")
+

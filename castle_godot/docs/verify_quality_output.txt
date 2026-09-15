@@ -1,0 +1,156 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+=== TASK05 画质档 / 性能 HUD 自检 ===
+[castle_collision] static bodies = 23
+[environment] ready | preset=DAY time=12.00 auto=false sun=true windows=2 day_length=180s
+[environment] presets = ["res://materials/env_day_preset.tres", "res://materials/env_sunset.tres", "res://materials/env_night.tres"]（来源：检查器 > materials/*.tres > 脚本内置默认值）
+[quality] ready | default=MEDIUM props=201（可见剔除阈值 4.0m）
+[quality] level = MEDIUM | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 320.0, "shadow_blur": 1.0, "light_angular_distance": 0.0, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.0, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 950.0, "prop_visibility_end": 140.0, "particle_draw_distance": 0.0 }
+[perf_hud] ready | 初始状态=OFF | 刷新间隔=0.25s
+[castle_godot] scene ready | castle loaded: true
+[castle_godot] castle world AABB size = (230.0, 88.29, 230.0) , center = (0.0, 43.145, 0.0)
+[1] 装配
+  [PASS] QualityManager 节点存在且脚本正确
+  [PASS] PerformanceHud 节点存在且脚本正确
+  [PASS] HUD 有 QualityLabel
+  [PASS] HUD 有 PerfLabel
+  [PASS] 默认性能 HUD 关闭
+  [PASS] 输入映射 quality_low = 7
+  [PASS] 输入映射 quality_medium = 8
+  [PASS] 输入映射 quality_high = 9
+  [PASS] 输入映射 toggle_perf_hud = F7
+  [PASS] 三档常量表完整（3 档）
+[2] 默认画质档
+  [PASS] 默认档 = MEDIUM  -> MEDIUM
+  [PASS] HUD 显示 Quality: MEDIUM  -> Quality: MEDIUM
+  [PASS] MEDIUM 渲染比例为 1.0
+  [PASS] MEDIUM 未关闭 Glow / Fog
+[3] 性能 HUD（F7）
+[perf_hud] ON
+  [PASS] F7 打开性能 HUD
+  [PASS] 性能 HUD 同步到 HUD Label  -> FPS 110  |  Frame 9.09 ms | Draw Calls 0  |  Objects 3730  |  Nodes 783 | Quality: MEDIUM  |  1600x900 (scale 1.00) | Player: (0.0, 0.4, 78.0)
+  [PASS] 读数含 FPS  -> FPS 110  |  Frame 9.09 ms | Draw Calls 0  |  Objects 3730  |  Nodes 783 | Quality: MEDIUM  |  1600x900 (scale 1.00) | Player: (0.0, 0.4, 78.0)
+  [PASS] 读数含帧时间
+  [PASS] 读数含 Draw Calls
+  [PASS] 读数含对象数 / 节点数
+  [PASS] 读数含当前画质档
+  [PASS] 读数含分辨率
+  [PASS] 读数含玩家坐标
+  [PASS] 指标采集可用（对象数 > 0）  -> objects=3730 nodes=783
+[perf_hud] OFF
+  [PASS] F7 关闭性能 HUD
+  [PASS] HUD Label 同步隐藏
+  [PASS] 隐藏后不再采样（文本保持不变）
+[4] 7 / 8 / 9 真实按键切档
+[quality] level = LOW | { "msaa": 0, "screen_space_aa": 1, "render_scale": 0.75, "shadow_enabled": true, "shadow_max_distance": 150.0, "shadow_blur": 0.3, "light_angular_distance": 0.0, "glow_enabled": false, "fog_enabled": false, "ssao_enabled": false, "window_emission_scale": 0.6, "particle_scale": 0.25, "particle_trails": false, "night_light_budget": 3, "camera_far": 700.0, "prop_visibility_end": 70.0, "particle_draw_distance": 300.0 }
+  [PASS] 按 7 → LOW  -> LOW
+  [PASS] HUD 同步 LOW  -> Quality: LOW
+[quality] level = HIGH | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 520.0, "shadow_blur": 1.6, "light_angular_distance": 1.2, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.15, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 1500.0, "prop_visibility_end": 0.0, "particle_draw_distance": 0.0 }
+  [PASS] 按 9 → HIGH  -> HIGH
+[quality] level = MEDIUM | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 320.0, "shadow_blur": 1.0, "light_angular_distance": 0.0, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.0, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 950.0, "prop_visibility_end": 140.0, "particle_draw_distance": 0.0 }
+  [PASS] 按 8 → MEDIUM  -> MEDIUM
+[perf_hud] ON
+  [PASS] 切档后 F7 仍可打开性能 HUD（互不干扰）
+  [PASS] 性能 HUD 画质行显示当前档 MEDIUM
+[quality] level = HIGH | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 520.0, "shadow_blur": 1.6, "light_angular_distance": 1.2, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.15, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 1500.0, "prop_visibility_end": 0.0, "particle_draw_distance": 0.0 }
+  [PASS] 性能 HUD 画质行随切档实时刷新（→ HIGH）  -> FPS 146  |  Frame 6.85 ms | Draw Calls 0  |  Objects 3730  |  Nodes 783 | Quality: HIGH  |  1600x900 (scale 1.00) | Player: (0.0, 0.4, 78.0)
+[quality] level = MEDIUM | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 320.0, "shadow_blur": 1.0, "light_angular_distance": 0.0, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.0, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 950.0, "prop_visibility_end": 140.0, "particle_draw_distance": 0.0 }
+[perf_hud] OFF
+  [PASS] 再按 F7 关闭
+[5] 三档逐项生效值
+[quality] level = MEDIUM | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 320.0, "shadow_blur": 1.0, "light_angular_distance": 0.0, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.0, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 950.0, "prop_visibility_end": 140.0, "particle_draw_distance": 0.0 }
+[quality] level = LOW | { "msaa": 0, "screen_space_aa": 1, "render_scale": 0.75, "shadow_enabled": true, "shadow_max_distance": 150.0, "shadow_blur": 0.3, "light_angular_distance": 0.0, "glow_enabled": false, "fog_enabled": false, "ssao_enabled": false, "window_emission_scale": 0.6, "particle_scale": 0.25, "particle_trails": false, "night_light_budget": 3, "camera_far": 700.0, "prop_visibility_end": 70.0, "particle_draw_distance": 300.0 }
+  [PASS] LOW：MSAA 关闭  -> 0
+  [PASS] LOW：FXAA 打开  -> 1
+  [PASS] LOW：渲染比例 0.75  -> 0.75
+  [PASS] LOW：阴影距离 150  -> 150.0
+  [PASS] LOW：阴影模糊 0.3  -> 0.3
+  [PASS] LOW：摄像机 far 700  -> 700.0
+  [PASS] LOW：Glow 关闭
+  [PASS] LOW：Fog 关闭
+  [PASS] LOW：SSAO 关闭
+  [PASS] LOW：小装饰物可见距离 70m  -> 70.0
+  [PASS] LOW：粒子绘制距离 300m  -> 300.0
+  [PASS] LOW：夜景灯预算 3 盏  -> 3
+  [PASS] LOW：烟花粒子明显减少（≤ MEDIUM 的 30%）  -> LOW=220 / MEDIUM=880
+  [PASS] LOW：拖尾关闭
+[quality] level = HIGH | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 520.0, "shadow_blur": 1.6, "light_angular_distance": 1.2, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.15, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 1500.0, "prop_visibility_end": 0.0, "particle_draw_distance": 0.0 }
+  [PASS] HIGH：MSAA 4x  -> 2
+  [PASS] HIGH：阴影距离 520  -> 520.0
+  [PASS] HIGH：阴影模糊 1.6  -> 1.6
+  [PASS] HIGH：光线角直径 1.2  -> 1.2
+  [PASS] HIGH：摄像机 far 1500  -> 1500.0
+  [PASS] HIGH：不做可见性剔除（小装饰物 0 = 不限）  -> 0.0
+  [PASS] HIGH：粒子绘制距离不限  -> 0.0
+  [PASS] HIGH：窗光强度 > MEDIUM  -> 1.15 vs 1.00
+[quality] level = MEDIUM | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 320.0, "shadow_blur": 1.0, "light_angular_distance": 0.0, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.0, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 950.0, "prop_visibility_end": 140.0, "particle_draw_distance": 0.0 }
+  [PASS] 切回 MEDIUM 与初始 MEDIUM 完全一致（无残留）
+  [PASS] MEDIUM 阴影距离 = 320（既有默认）  -> 320.0
+  [PASS] MEDIUM 摄像机 far = 950  -> 950.0
+  [PASS] MEDIUM 三台相机（展示 + 玩家 2）far 同步  -> [950.0, 950.0]
+  [PASS] MEDIUM 粒子量与既有验收一致（4 发射位 × 220）  -> [220, 220, 220, 220]
+  [PASS] MEDIUM 窗光材质数量不变（0 新增灯 / 材质复用）  -> 2
+[quality] level = LOW | { "msaa": 0, "screen_space_aa": 1, "render_scale": 0.75, "shadow_enabled": true, "shadow_max_distance": 150.0, "shadow_blur": 0.3, "light_angular_distance": 0.0, "glow_enabled": false, "fog_enabled": false, "ssao_enabled": false, "window_emission_scale": 0.6, "particle_scale": 0.25, "particle_trails": false, "night_light_budget": 3, "camera_far": 700.0, "prop_visibility_end": 70.0, "particle_draw_distance": 300.0 }
+  [PASS] LOW：夜间只点亮 3 盏灯  -> 点亮 3 盏
+[quality] level = MEDIUM | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 320.0, "shadow_blur": 1.0, "light_angular_distance": 0.0, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.0, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 950.0, "prop_visibility_end": 140.0, "particle_draw_distance": 0.0 }
+  [PASS] MEDIUM：夜间点亮 6 盏灯（无回退）  -> 点亮 6 盏
+  [PASS] MEDIUM：Glow 恢复开启（与既有验收一致）
+[6] 稳定性（30 轮换档）
+[quality] level = MEDIUM | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 320.0, "shadow_blur": 1.0, "light_angular_distance": 0.0, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.0, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 950.0, "prop_visibility_end": 140.0, "particle_draw_distance": 0.0 }
+[quality] level = LOW | { "msaa": 0, "screen_space_aa": 1, "render_scale": 0.75, "shadow_enabled": true, "shadow_max_distance": 150.0, "shadow_blur": 0.3, "light_angular_distance": 0.0, "glow_enabled": false, "fog_enabled": false, "ssao_enabled": false, "window_emission_scale": 0.6, "particle_scale": 0.25, "particle_trails": false, "night_light_budget": 3, "camera_far": 700.0, "prop_visibility_end": 70.0, "particle_draw_distance": 300.0 }
+[quality] level = MEDIUM | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 320.0, "shadow_blur": 1.0, "light_angular_distance": 0.0, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.0, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 950.0, "prop_visibility_end": 140.0, "particle_draw_distance": 0.0 }
+[quality] level = HIGH | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 520.0, "shadow_blur": 1.6, "light_angular_distance": 1.2, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.15, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 1500.0, "prop_visibility_end": 0.0, "particle_draw_distance": 0.0 }
+[quality] level = LOW | { "msaa": 0, "screen_space_aa": 1, "render_scale": 0.75, "shadow_enabled": true, "shadow_max_distance": 150.0, "shadow_blur": 0.3, "light_angular_distance": 0.0, "glow_enabled": false, "fog_enabled": false, "ssao_enabled": false, "window_emission_scale": 0.6, "particle_scale": 0.25, "particle_trails": false, "night_light_budget": 3, "camera_far": 700.0, "prop_visibility_end": 70.0, "particle_draw_distance": 300.0 }
+[quality] level = MEDIUM | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 320.0, "shadow_blur": 1.0, "light_angular_distance": 0.0, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.0, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 950.0, "prop_visibility_end": 140.0, "particle_draw_distance": 0.0 }
+[quality] level = HIGH | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 520.0, "shadow_blur": 1.6, "light_angular_distance": 1.2, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.15, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 1500.0, "prop_visibility_end": 0.0, "particle_draw_distance": 0.0 }
+[quality] level = LOW | { "msaa": 0, "screen_space_aa": 1, "render_scale": 0.75, "shadow_enabled": true, "shadow_max_distance": 150.0, "shadow_blur": 0.3, "light_angular_distance": 0.0, "glow_enabled": false, "fog_enabled": false, "ssao_enabled": false, "window_emission_scale": 0.6, "particle_scale": 0.25, "particle_trails": false, "night_light_budget": 3, "camera_far": 700.0, "prop_visibility_end": 70.0, "particle_draw_distance": 300.0 }
+[quality] level = MEDIUM | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 320.0, "shadow_blur": 1.0, "light_angular_distance": 0.0, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.0, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 950.0, "prop_visibility_end": 140.0, "particle_draw_distance": 0.0 }
+[quality] level = HIGH | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 520.0, "shadow_blur": 1.6, "light_angular_distance": 1.2, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.15, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 1500.0, "prop_visibility_end": 0.0, "particle_draw_distance": 0.0 }
+[quality] level = LOW | { "msaa": 0, "screen_space_aa": 1, "render_scale": 0.75, "shadow_enabled": true, "shadow_max_distance": 150.0, "shadow_blur": 0.3, "light_angular_distance": 0.0, "glow_enabled": false, "fog_enabled": false, "ssao_enabled": false, "window_emission_scale": 0.6, "particle_scale": 0.25, "particle_trails": false, "night_light_budget": 3, "camera_far": 700.0, "prop_visibility_end": 70.0, "particle_draw_distance": 300.0 }
+[quality] level = MEDIUM | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 320.0, "shadow_blur": 1.0, "light_angular_distance": 0.0, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.0, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 950.0, "prop_visibility_end": 140.0, "particle_draw_distance": 0.0 }
+[quality] level = HIGH | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 520.0, "shadow_blur": 1.6, "light_angular_distance": 1.2, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.15, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 1500.0, "prop_visibility_end": 0.0, "particle_draw_distance": 0.0 }
+[quality] level = LOW | { "msaa": 0, "screen_space_aa": 1, "render_scale": 0.75, "shadow_enabled": true, "shadow_max_distance": 150.0, "shadow_blur": 0.3, "light_angular_distance": 0.0, "glow_enabled": false, "fog_enabled": false, "ssao_enabled": false, "window_emission_scale": 0.6, "particle_scale": 0.25, "particle_trails": false, "night_light_budget": 3, "camera_far": 700.0, "prop_visibility_end": 70.0, "particle_draw_distance": 300.0 }
+[quality] level = MEDIUM | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 320.0, "shadow_blur": 1.0, "light_angular_distance": 0.0, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.0, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 950.0, "prop_visibility_end": 140.0, "particle_draw_distance": 0.0 }
+[quality] level = HIGH | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 520.0, "shadow_blur": 1.6, "light_angular_distance": 1.2, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.15, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 1500.0, "prop_visibility_end": 0.0, "particle_draw_distance": 0.0 }
+[quality] level = LOW | { "msaa": 0, "screen_space_aa": 1, "render_scale": 0.75, "shadow_enabled": true, "shadow_max_distance": 150.0, "shadow_blur": 0.3, "light_angular_distance": 0.0, "glow_enabled": false, "fog_enabled": false, "ssao_enabled": false, "window_emission_scale": 0.6, "particle_scale": 0.25, "particle_trails": false, "night_light_budget": 3, "camera_far": 700.0, "prop_visibility_end": 70.0, "particle_draw_distance": 300.0 }
+[quality] level = MEDIUM | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 320.0, "shadow_blur": 1.0, "light_angular_distance": 0.0, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.0, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 950.0, "prop_visibility_end": 140.0, "particle_draw_distance": 0.0 }
+[quality] level = HIGH | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 520.0, "shadow_blur": 1.6, "light_angular_distance": 1.2, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.15, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 1500.0, "prop_visibility_end": 0.0, "particle_draw_distance": 0.0 }
+[quality] level = LOW | { "msaa": 0, "screen_space_aa": 1, "render_scale": 0.75, "shadow_enabled": true, "shadow_max_distance": 150.0, "shadow_blur": 0.3, "light_angular_distance": 0.0, "glow_enabled": false, "fog_enabled": false, "ssao_enabled": false, "window_emission_scale": 0.6, "particle_scale": 0.25, "particle_trails": false, "night_light_budget": 3, "camera_far": 700.0, "prop_visibility_end": 70.0, "particle_draw_distance": 300.0 }
+[quality] level = MEDIUM | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 320.0, "shadow_blur": 1.0, "light_angular_distance": 0.0, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.0, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 950.0, "prop_visibility_end": 140.0, "particle_draw_distance": 0.0 }
+[quality] level = HIGH | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 520.0, "shadow_blur": 1.6, "light_angular_distance": 1.2, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.15, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 1500.0, "prop_visibility_end": 0.0, "particle_draw_distance": 0.0 }
+[quality] level = LOW | { "msaa": 0, "screen_space_aa": 1, "render_scale": 0.75, "shadow_enabled": true, "shadow_max_distance": 150.0, "shadow_blur": 0.3, "light_angular_distance": 0.0, "glow_enabled": false, "fog_enabled": false, "ssao_enabled": false, "window_emission_scale": 0.6, "particle_scale": 0.25, "particle_trails": false, "night_light_budget": 3, "camera_far": 700.0, "prop_visibility_end": 70.0, "particle_draw_distance": 300.0 }
+[quality] level = MEDIUM | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 320.0, "shadow_blur": 1.0, "light_angular_distance": 0.0, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.0, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 950.0, "prop_visibility_end": 140.0, "particle_draw_distance": 0.0 }
+[quality] level = HIGH | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 520.0, "shadow_blur": 1.6, "light_angular_distance": 1.2, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.15, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 1500.0, "prop_visibility_end": 0.0, "particle_draw_distance": 0.0 }
+[quality] level = LOW | { "msaa": 0, "screen_space_aa": 1, "render_scale": 0.75, "shadow_enabled": true, "shadow_max_distance": 150.0, "shadow_blur": 0.3, "light_angular_distance": 0.0, "glow_enabled": false, "fog_enabled": false, "ssao_enabled": false, "window_emission_scale": 0.6, "particle_scale": 0.25, "particle_trails": false, "night_light_budget": 3, "camera_far": 700.0, "prop_visibility_end": 70.0, "particle_draw_distance": 300.0 }
+[quality] level = MEDIUM | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 320.0, "shadow_blur": 1.0, "light_angular_distance": 0.0, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.0, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 950.0, "prop_visibility_end": 140.0, "particle_draw_distance": 0.0 }
+[quality] level = HIGH | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 520.0, "shadow_blur": 1.6, "light_angular_distance": 1.2, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.15, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 1500.0, "prop_visibility_end": 0.0, "particle_draw_distance": 0.0 }
+[quality] level = LOW | { "msaa": 0, "screen_space_aa": 1, "render_scale": 0.75, "shadow_enabled": true, "shadow_max_distance": 150.0, "shadow_blur": 0.3, "light_angular_distance": 0.0, "glow_enabled": false, "fog_enabled": false, "ssao_enabled": false, "window_emission_scale": 0.6, "particle_scale": 0.25, "particle_trails": false, "night_light_budget": 3, "camera_far": 700.0, "prop_visibility_end": 70.0, "particle_draw_distance": 300.0 }
+[quality] level = MEDIUM | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 320.0, "shadow_blur": 1.0, "light_angular_distance": 0.0, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.0, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 950.0, "prop_visibility_end": 140.0, "particle_draw_distance": 0.0 }
+[quality] level = HIGH | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 520.0, "shadow_blur": 1.6, "light_angular_distance": 1.2, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.15, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 1500.0, "prop_visibility_end": 0.0, "particle_draw_distance": 0.0 }
+[quality] level = MEDIUM | { "msaa": 2, "screen_space_aa": 0, "render_scale": 1.0, "shadow_enabled": true, "shadow_max_distance": 320.0, "shadow_blur": 1.0, "light_angular_distance": 0.0, "glow_enabled": true, "fog_enabled": true, "ssao_enabled": true, "window_emission_scale": 1.0, "particle_scale": 1.0, "particle_trails": true, "night_light_budget": -1, "camera_far": 950.0, "prop_visibility_end": 140.0, "particle_draw_distance": 0.0 }
+  [PASS] 换档 30 轮后节点数不变  -> 782 -> 782
+  [PASS] 换档 30 轮后灯光数不变  -> 7 -> 7
+  [PASS] 换档 30 轮后粒子系统数不变  -> 4 -> 4
+  [PASS] 换档 30 轮后相机数不变  -> 3 -> 3
+  [PASS] 窗户自发光材质数量恒定  -> 2 份
+[7] TASK01~04 回归
+  [PASS] 节点仍在：Player
+  [PASS] 节点仍在：EnvironmentManager
+  [PASS] 节点仍在：PoiSet
+  [PASS] 节点仍在：InteractionController
+  [PASS] 节点仍在：Fireworks
+  [PASS] 节点仍在：NightLights
+  [PASS] 节点仍在：PresentationController
+  [PASS] 节点仍在：WorldCollision
+  [PASS] 节点仍在：HUD
+  [PASS] POI 数量 ≥ 5  -> 6 个
+  [PASS] 展示相机可用（current）
+  [PASS] 玩家控制器方法完整
+  [PASS] 烟花发射位 4 个  -> 4
+  [PASS] 夜景灯 6 盏  -> 6
+  [PASS] 昼夜系统接口完整
+  [PASS] 城堡 GLB 已加载且网格数 > 0  -> 655 个网格
+  [PASS] 小装饰物剔除清单非空（可见性优化生效）  -> 201 个
+  [PASS] 回归：白天预设可切换  -> DAY
+
+=== 结果：89 项通过 / 0 项失败 ===

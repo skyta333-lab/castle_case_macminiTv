@@ -1,0 +1,116 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scripts/poi_interactable.gd" id="1_poi"]
+[ext_resource type="Script" path="res://scripts/gate_poi.gd" id="2_gate_poi"]
+[ext_resource type="Script" path="res://scripts/gate_controller.gd" id="3_gate"]
+[ext_resource type="PackedScene" path="res://scenes/poi_marker.tscn" id="4_marker"]
+
+[sub_resource type="BoxShape3D" id="Box_gate"]
+size = Vector3(17.6, 11.2, 2)
+
+[sub_resource type="SphereShape3D" id="Sphere_gate_tower"]
+radius = 3.5
+
+[sub_resource type="SphereShape3D" id="Sphere_side_tower"]
+radius = 3.5
+
+[sub_resource type="SphereShape3D" id="Sphere_banner"]
+radius = 3.0
+
+[sub_resource type="SphereShape3D" id="Sphere_terrace"]
+radius = 2.8
+
+[node name="PoiSet" type="Node3D"]
+
+[node name="POI_Gate" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.6, 26.2)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("2_gate_poi")
+prompt_text = "Press E to interact"
+poi_id = "gate"
+poi_title = "Castle Main Gate"
+poi_description = "The twin-leaf castle gate. In the Blender export the two leaves (Gate_Door_W / Gate_Door_E) are separate meshes hinged at their outer edges, so the gate swings open at runtime purely by driving their transforms - the GLB itself is never modified or re-exported."
+marker_scene = ExtResource("4_marker")
+marker_height = 5.0
+gate_controller_path = NodePath("../GateController")
+
+[node name="Shape" type="CollisionShape3D" parent="POI_Gate"]
+shape = SubResource("Box_gate")
+
+[node name="POI_CentralTower" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 30.5)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_poi")
+poi_id = "central_tower"
+poi_title = "Central Tower"
+poi_description = "The tallest tower of the castle. Its shaft rises about 52 m above the rock podium and is crowned by a slim spire, the castle clock and the banner ring at the top."
+marker_scene = ExtResource("4_marker")
+marker_height = 4.0
+
+[node name="Shape" type="CollisionShape3D" parent="POI_CentralTower"]
+shape = SubResource("Sphere_gate_tower")
+
+[node name="POI_WestTower" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 13, 27)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_poi")
+poi_id = "west_tower"
+poi_title = "West Tower"
+poi_description = "The western tower of the gatehouse: a four-storey shaft with a crenellated cornice, a drum and a conical spire. Together with its twin it frames the main gate."
+marker_scene = ExtResource("4_marker")
+marker_height = 4.5
+
+[node name="Shape" type="CollisionShape3D" parent="POI_WestTower"]
+shape = SubResource("Sphere_side_tower")
+
+[node name="POI_EastTower" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 13, 27)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_poi")
+poi_id = "east_tower"
+poi_title = "East Tower"
+poi_description = "The eastern tower of the gatehouse, a mirror of the western one. Its drum and spire are the last things you see when you walk away from the castle."
+marker_scene = ExtResource("4_marker")
+marker_height = 4.5
+
+[node name="Shape" type="CollisionShape3D" parent="POI_EastTower"]
+shape = SubResource("Sphere_side_tower")
+
+[node name="POI_GateBanners" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 11, 29)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_poi")
+poi_id = "gate_banners"
+poi_title = "Gate Banners"
+poi_description = "Two banner poles flank the gate on the forecourt. The pennants carry the castle emblem and are the only cloth in the scene with a wind animation."
+marker_scene = ExtResource("4_marker")
+marker_height = 6.0
+
+[node name="Shape" type="CollisionShape3D" parent="POI_GateBanners"]
+shape = SubResource("Sphere_banner")
+
+[node name="POI_PodiumTerrace" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 5.5, 34)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_poi")
+poi_id = "podium_terrace"
+poi_title = "Rock Podium & Garden Terrace"
+poi_description = "The sculpted rock podium lifts the whole castle roughly 5 m above the meadow. Its top deck doubles as a garden terrace, ringed by low parapet walls, lamp posts and shrubs."
+marker_scene = ExtResource("4_marker")
+marker_height = 3.5
+
+[node name="Shape" type="CollisionShape3D" parent="POI_PodiumTerrace"]
+shape = SubResource("Sphere_terrace")
+
+[node name="GateController" type="Node3D" parent="."]
+script = ExtResource("3_gate")
+door_west_path = NodePath("../../Castle/Gate_Door_W")
+door_east_path = NodePath("../../Castle/Gate_Door_E")
+open_angle_degrees = 95.0
+open_duration = 1.6
