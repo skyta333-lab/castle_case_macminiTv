@@ -1,3 +1,14 @@
+---
+AIGC:
+    Label: "1"
+    ContentProducer: 001191440300708461136T1XGW3
+    ProduceID: 44f0e24762f9ee24c3d7182ad71c0adb_13fd6277b02411f1af37525400826444
+    ReservedCode1: qFBNMFdYN0cGUeSDRcDH3Kgxo8LO/B6rrD7slBcYDWyZ8ilhzhvxq5EqoTyOxkfLG/Mb+/QVc16AyytlHDIk7r487yPilxoaWZnQdUzCEKmxWscFiXh/0m/2bLkP+f9oIF3MBTseNmpdkRn8CBNmKnSJnBCC88UTwNa86uE03099q9ignE/t/3CDLwI=
+    ContentPropagator: 001191440300708461136T1XGW3
+    PropagateID: 44f0e24762f9ee24c3d7182ad71c0adb_13fd6277b02411f1af37525400826444
+    ReservedCode2: qFBNMFdYN0cGUeSDRcDH3Kgxo8LO/B6rrD7slBcYDWyZ8ilhzhvxq5EqoTyOxkfLG/Mb+/QVc16AyytlHDIk7r487yPilxoaWZnQdUzCEKmxWscFiXh/0m/2bLkP+f9oIF3MBTseNmpdkRn8CBNmKnSJnBCC88UTwNa86uE03099q9ignE/t/3CDLwI=
+---
+
 # castle_godot — 童话城堡 Godot 4.7 演示工程（V2）
 
 > Mac mini（non-TV）全天任务 TASK 01–06 交付版本。工程位于仓库
@@ -197,3 +208,4 @@ castle_godot/
   （窗户除外），因此 LOW 档远景细节明显减少。
 - 截图与基准脚本必须在**非 headless** 模式运行（需要真实渲染后端），headless 下只能跑自检脚本。
 - 演示模式（F6）会临时接管镜头与昼夜，期间手动切换镜头模式会以最后一次操作为准，退出时还原到进入前状态。
+*（内容由AI生成，仅供参考）*

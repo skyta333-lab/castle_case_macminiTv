@@ -1,3 +1,14 @@
+---
+AIGC:
+    Label: "1"
+    ContentProducer: 001191440300708461136T1XGW3
+    ProduceID: 44f0e24762f9ee24c3d7182ad71c0adb_14a667fbb02411f1af37525400826444
+    ReservedCode1: Xcbpcuz0OBdOVkDBNg5bFkZHVi3uxShrq/WgQm6xW/FE6jPIsJZEcGYNQtcX4c5zTfNS5KsYBUE6Jp6jDLatXbzXXgOvfnz1Zpa9Qp2jb/oauZ1OCK2NKjcVetRlFU8R7H1mhE8U10CYAHq99sy/LvrBaq/VVtigq1CaXzFO4ZI4PvqjBMVjvqJJZLE=
+    ContentPropagator: 001191440300708461136T1XGW3
+    PropagateID: 44f0e24762f9ee24c3d7182ad71c0adb_14a667fbb02411f1af37525400826444
+    ReservedCode2: Xcbpcuz0OBdOVkDBNg5bFkZHVi3uxShrq/WgQm6xW/FE6jPIsJZEcGYNQtcX4c5zTfNS5KsYBUE6Jp6jDLatXbzXXgOvfnz1Zpa9Qp2jb/oauZ1OCK2NKjcVetRlFU8R7H1mhE8U10CYAHq99sy/LvrBaq/VVtigq1CaXzFO4ZI4PvqjBMVjvqJJZLE=
+---
+
 # CHANGELOG — Castle V2（Mac mini non-TV 全天任务）
 
 分支：`work/macmini-nontv-castle-v2` ｜ 基线：V1 静态展示工程
@@ -133,3 +144,4 @@
 
 验收要点：`tools/verify_v2.gd` 全组通过、四张截图存在且非空、README / CHANGELOG 齐全、
 `git status` 无无关缓存与临时文件。
+*（内容由AI生成，仅供参考）*

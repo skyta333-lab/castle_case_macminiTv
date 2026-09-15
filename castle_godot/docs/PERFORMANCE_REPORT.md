@@ -1,3 +1,14 @@
+---
+AIGC:
+    Label: "1"
+    ContentProducer: 001191440300708461136T1XGW3
+    ProduceID: 44f0e24762f9ee24c3d7182ad71c0adb_15301d1bb02411f1ac01525400e6dd8f
+    ReservedCode1: F9CgHi8QGg9dp7pqQm4JfGF/UXW1jMsYCufjTGHc4WVqW/DRAwRjYVnRLF6bEuQwBWdOxDWJUAZgDcSp874ak6jFEnHqT0lyCtT6cR57vcrvWXcgyksjrSyBvGrumcuL9X5Sy9Sb9RF0M4Vy+7v3ZgllOW807CZT9ZkbYmUinaS7bALtqkvCGDtmmcI=
+    ContentPropagator: 001191440300708461136T1XGW3
+    PropagateID: 44f0e24762f9ee24c3d7182ad71c0adb_15301d1bb02411f1ac01525400e6dd8f
+    ReservedCode2: F9CgHi8QGg9dp7pqQm4JfGF/UXW1jMsYCufjTGHc4WVqW/DRAwRjYVnRLF6bEuQwBWdOxDWJUAZgDcSp874ak6jFEnHqT0lyCtT6cR57vcrvWXcgyksjrSyBvGrumcuL9X5Sy9Sb9RF0M4Vy+7v3ZgllOW807CZT9ZkbYmUinaS7bALtqkvCGDtmmcI=
+---
+
 # 城堡性能基准报告（TASK 05）
 
 本报告由 `castle_godot/tools/benchmark.gd` 在本机真实窗口渲染下跑出的 12 组数据生成，
@@ -184,3 +195,4 @@ cd castle_godot
   本报告中的 Draw Call 均来自带窗口的真实渲染。
 - 基准未做多次重复取平均，不构成严格对照实验；如需发布级数据，建议同一档位重复 5 次取中位数。
 
+*（内容由AI生成，仅供参考）*
